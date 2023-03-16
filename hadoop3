@@ -1,0 +1,128 @@
+[training@localhost ~]$ hadoop fs -ls
+Found 17 items
+drwxr-xr-x   - training supergroup          0 2023-02-10 11:26 OddEven
+drwxr-xr-x   - training supergroup          0 2023-02-13 15:24 avgwordinput
+drwxr-xr-x   - training supergroup          0 2023-02-13 15:26 avgwordoutput
+drwxr-xr-x   - training supergroup          0 2023-02-14 01:51 cocurence
+drwxr-xr-x   - training supergroup          0 2023-02-14 01:55 cocurenceoutput
+-rw-r--r--   1 training supergroup         42 2023-02-14 01:53 cooccurence
+drwxr-xr-x   - training supergroup          0 2023-02-13 10:05 findwordinput
+drwxr-xr-x   - training supergroup          0 2023-03-01 09:10 hiveinput
+drwxr-xr-x   - training supergroup          0 2023-03-01 16:57 movie
+-rw-r--r--   1 training supergroup         73 2023-02-10 11:29 oddeveninput
+drwxr-xr-x   - training supergroup          0 2023-02-10 11:31 oddevenoutput
+drwxr-xr-x   - training supergroup          0 2023-02-10 11:48 oddevenoutput1
+drwxr-xr-x   - training supergroup          0 2023-02-12 16:01 partisioninput
+drwxr-xr-x   - training supergroup          0 2023-02-12 16:03 partisionoutput
+drwxr-xr-x   - training supergroup          0 2023-02-12 16:08 partisionoutputt
+drwxr-xr-x   - training supergroup          0 2023-02-09 19:46 wordcount
+drwxr-xr-x   - training supergroup          0 2023-02-09 19:50 wordoutput
+[training@localhost ~]$ hadoop fs -ls movie
+Found 6 items
+-rw-r--r--   1 training supergroup          0 2023-03-01 16:57 movie/_SUCCESS
+drwxr-xr-x   - training supergroup          0 2023-03-01 16:57 movie/_logs
+-rw-r--r--   1 training supergroup      24596 2023-03-01 16:57 movie/part-m-00000
+-rw-r--r--   1 training supergroup      24740 2023-03-01 16:57 movie/part-m-00001
+-rw-r--r--   1 training supergroup      26371 2023-03-01 16:57 movie/part-m-00002
+-rw-r--r--   1 training supergroup      26345 2023-03-01 16:57 movie/part-m-00003
+[training@localhost ~]$ sqoop export --connect jdbc:mysql://localhost/db  --username training --password training --table export --export-dir movie/part-m-00000
+23/03/01 17:10:51 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/01 17:10:51 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+23/03/01 17:10:51 INFO tool.CodeGenTool: Beginning code generation
+23/03/01 17:10:51 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `export` AS t LIMIT 1
+23/03/01 17:10:51 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `export` AS t LIMIT 1
+23/03/01 17:10:51 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/9cf080a16d8f4c28ee20cdeb7f9e70a0/export.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/01 17:10:52 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/9cf080a16d8f4c28ee20cdeb7f9e70a0/export.jar
+23/03/01 17:10:52 INFO mapreduce.ExportJobBase: Beginning export of export
+23/03/01 17:10:53 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+23/03/01 17:10:54 INFO input.FileInputFormat: Total input paths to process : 1
+23/03/01 17:10:54 INFO input.FileInputFormat: Total input paths to process : 1
+23/03/01 17:10:54 INFO mapred.JobClient: Running job: job_202303010654_0025
+23/03/01 17:10:55 INFO mapred.JobClient:  map 0% reduce 0%
+23/03/01 17:11:01 INFO mapred.JobClient: Task Id : attempt_202303010654_0025_m_000000_0, Status : FAILED
+java.lang.NumberFormatException: For input string: "1	Toy Story	1995"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.valueOf(Integer.java:554)
+	at export.__loadFromFields(export.java:218)
+	at export.parse(export.java:170)
+	at org.apache.sqoop.mapreduce.TextExportMapper.map(TextExportMapper.java:77)
+	at org.apache.sqoop.mapreduce.TextExportMapper.map(TextExportMapper.java:36)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:140)
+	at org.apache.sqoop.mapreduce.AutoProgressMapper.run(AutoProgressMapper.java:182)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:645)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:325)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:268)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1332)
+	at or
+23/03/01 17:11:06 INFO mapred.JobClient: Task Id : attempt_202303010654_0025_m_000000_1, Status : FAILED
+java.lang.NumberFormatException: For input string: "1	Toy Story	1995"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.valueOf(Integer.java:554)
+	at export.__loadFromFields(export.java:218)
+	at export.parse(export.java:170)
+	at org.apache.sqoop.mapreduce.TextExportMapper.map(TextExportMapper.java:77)
+	at org.apache.sqoop.mapreduce.TextExportMapper.map(TextExportMapper.java:36)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:140)
+	at org.apache.sqoop.mapreduce.AutoProgressMapper.run(AutoProgressMapper.java:182)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:645)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:325)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:268)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1332)
+	at or
+23/03/01 17:11:11 INFO mapred.JobClient: Task Id : attempt_202303010654_0025_m_000000_2, Status : FAILED
+java.lang.NumberFormatException: For input string: "1	Toy Story	1995"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.valueOf(Integer.java:554)
+	at export.__loadFromFields(export.java:218)
+	at export.parse(export.java:170)
+	at org.apache.sqoop.mapreduce.TextExportMapper.map(TextExportMapper.java:77)
+	at org.apache.sqoop.mapreduce.TextExportMapper.map(TextExportMapper.java:36)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:140)
+	at org.apache.sqoop.mapreduce.AutoProgressMapper.run(AutoProgressMapper.java:182)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:645)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:325)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:268)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1332)
+	at or
+23/03/01 17:11:17 INFO mapred.JobClient: Job complete: job_202303010654_0025
+23/03/01 17:11:18 INFO mapred.JobClient: Counters: 7
+23/03/01 17:11:18 INFO mapred.JobClient:   Job Counters 
+23/03/01 17:11:18 INFO mapred.JobClient:     Failed map tasks=1
+23/03/01 17:11:18 INFO mapred.JobClient:     Launched map tasks=4
+23/03/01 17:11:18 INFO mapred.JobClient:     Data-local map tasks=4
+23/03/01 17:11:18 INFO mapred.JobClient:     Total time spent by all maps in occupied slots (ms)=21399
+23/03/01 17:11:18 INFO mapred.JobClient:     Total time spent by all reduces in occupied slots (ms)=0
+23/03/01 17:11:18 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+23/03/01 17:11:18 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+23/03/01 17:11:18 INFO mapreduce.ExportJobBase: Transferred 0 bytes in 24.6898 seconds (0 bytes/sec)
+23/03/01 17:11:18 WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+23/03/01 17:11:18 INFO mapreduce.ExportJobBase: Exported 0 records.
+23/03/01 17:11:18 ERROR tool.ExportTool: Error during export: Export job failed!
+[training@localhost ~]$ sqoop export --connect jdbc:mysql://localhost/db  --username training --password training --table export --export-dir /movie/part-m-00000
+23/03/01 17:13:33 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/01 17:13:33 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+23/03/01 17:13:33 INFO tool.CodeGenTool: Beginning code generation
+23/03/01 17:13:34 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `export` AS t LIMIT 1
+23/03/01 17:13:34 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `export` AS t LIMIT 1
+23/03/01 17:13:34 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/1c78a2afdb3a1b3df0bc33b84822363e/export.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/01 17:13:34 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/1c78a2afdb3a1b3df0bc33b84822363e/export.jar
+23/03/01 17:13:34 INFO mapreduce.ExportJobBase: Beginning export of export
+23/03/01 17:13:35 WARN mapreduce.ExportJobBase: Input path hdfs://0.0.0.0:8020/movie/part-m-00000 does not exist
+23/03/01 17:13:35 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+23/03/01 17:13:36 INFO mapred.JobClient: Cleaning up the staging area hdfs://0.0.0.0:8020/var/lib/hadoop-hdfs/cache/mapred/mapred/staging/training/.staging/job_202303010654_0026
+23/03/01 17:13:36 ERROR security.UserGroupInformation: PriviledgedActionException as:training (auth:SIMPLE) cause:org.apache.hadoop.mapreduce.lib.input.InvalidInputException: Input path does not exist: hdfs://0.0.0.0:8020/movie/part-m-00000
+23/03/01 17:13:36 ERROR tool.ExportTool: Encountered IOException running export job: org.apache.hadoop.mapreduce.lib.input.InvalidInputException: Input path does not exist: hdfs://0.0.0.0:8020/movie/part-m-00000
+[training@localhost ~]$ 

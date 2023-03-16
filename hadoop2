@@ -1,0 +1,256 @@
+[training@localhost ~]$ sqoop import-all-tables --connect jdbc:mysql://localhost/movielens  --fields-terminated-by ',' --username training --password training
+23/03/01 16:20:29 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/01 16:20:29 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+23/03/01 16:20:29 INFO tool.CodeGenTool: Beginning code generation
+23/03/01 16:20:29 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `emp` AS t LIMIT 1
+23/03/01 16:20:30 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `emp` AS t LIMIT 1
+23/03/01 16:20:30 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/f7b5550e24246a5e02715662cd213595/emp.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/01 16:20:30 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/f7b5550e24246a5e02715662cd213595/emp.jar
+23/03/01 16:20:30 WARN manager.MySQLManager: It looks like you are importing from mysql.
+23/03/01 16:20:30 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+23/03/01 16:20:30 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+23/03/01 16:20:30 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+23/03/01 16:20:30 ERROR tool.ImportAllTablesTool: Error during import: No primary key could be found for table emp. Please specify one with --split-by or perform a sequential import with '-m 1'.
+[training@localhost ~]$ sqoop import-all-tables --connect jdbc:mysql://localhost/mysql  --fields-terminated-by ',' --username training --password training
+23/03/01 16:23:54 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/01 16:23:54 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+23/03/01 16:23:54 INFO tool.CodeGenTool: Beginning code generation
+23/03/01 16:23:55 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `columns_priv` AS t LIMIT 1
+23/03/01 16:23:55 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `columns_priv` AS t LIMIT 1
+23/03/01 16:23:55 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/dc4880fe3f1239f0e197d8a253c65e70/columns_priv.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/01 16:23:55 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/dc4880fe3f1239f0e197d8a253c65e70/columns_priv.jar
+23/03/01 16:23:55 WARN manager.MySQLManager: It looks like you are importing from mysql.
+23/03/01 16:23:55 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+23/03/01 16:23:55 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+23/03/01 16:23:55 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+23/03/01 16:23:55 WARN manager.CatalogQueryManager: The table columns_priv contains a multi-column primary key. Sqoop will default to the column Host only for this job.
+23/03/01 16:23:55 WARN manager.CatalogQueryManager: The table columns_priv contains a multi-column primary key. Sqoop will default to the column Host only for this job.
+23/03/01 16:23:55 INFO mapreduce.ImportJobBase: Beginning import of columns_priv
+23/03/01 16:23:56 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+23/03/01 16:23:57 INFO db.DataDrivenDBInputFormat: BoundingValsQuery: SELECT MIN(`Host`), MAX(`Host`) FROM `columns_priv`
+23/03/01 16:23:57 WARN db.TextSplitter: Generating splits for a textual index column.
+23/03/01 16:23:57 WARN db.TextSplitter: If your database sorts in a case-insensitive order, this may result in a partial import or duplicate records.
+23/03/01 16:23:57 WARN db.TextSplitter: You are strongly encouraged to choose an integral split column.
+23/03/01 16:23:57 INFO mapred.JobClient: Running job: job_202303010654_0020
+23/03/01 16:23:58 INFO mapred.JobClient:  map 0% reduce 0%
+23/03/01 16:24:03 INFO mapred.JobClient:  map 100% reduce 0%
+23/03/01 16:24:04 INFO mapred.JobClient: Job complete: job_202303010654_0020
+23/03/01 16:24:04 INFO mapred.JobClient: Counters: 23
+23/03/01 16:24:04 INFO mapred.JobClient:   File System Counters
+23/03/01 16:24:04 INFO mapred.JobClient:     FILE: Number of bytes read=0
+23/03/01 16:24:04 INFO mapred.JobClient:     FILE: Number of bytes written=199224
+23/03/01 16:24:04 INFO mapred.JobClient:     FILE: Number of read operations=0
+23/03/01 16:24:04 INFO mapred.JobClient:     FILE: Number of large read operations=0
+23/03/01 16:24:04 INFO mapred.JobClient:     FILE: Number of write operations=0
+23/03/01 16:24:04 INFO mapred.JobClient:     HDFS: Number of bytes read=109
+23/03/01 16:24:04 INFO mapred.JobClient:     HDFS: Number of bytes written=0
+23/03/01 16:24:04 INFO mapred.JobClient:     HDFS: Number of read operations=1
+23/03/01 16:24:04 INFO mapred.JobClient:     HDFS: Number of large read operations=0
+23/03/01 16:24:04 INFO mapred.JobClient:     HDFS: Number of write operations=1
+23/03/01 16:24:04 INFO mapred.JobClient:   Job Counters 
+23/03/01 16:24:04 INFO mapred.JobClient:     Launched map tasks=1
+23/03/01 16:24:04 INFO mapred.JobClient:     Total time spent by all maps in occupied slots (ms)=5381
+23/03/01 16:24:04 INFO mapred.JobClient:     Total time spent by all reduces in occupied slots (ms)=0
+23/03/01 16:24:04 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+23/03/01 16:24:04 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+23/03/01 16:24:04 INFO mapred.JobClient:   Map-Reduce Framework
+23/03/01 16:24:04 INFO mapred.JobClient:     Map input records=0
+23/03/01 16:24:04 INFO mapred.JobClient:     Map output records=0
+23/03/01 16:24:04 INFO mapred.JobClient:     Input split bytes=109
+23/03/01 16:24:04 INFO mapred.JobClient:     Spilled Records=0
+23/03/01 16:24:04 INFO mapred.JobClient:     CPU time spent (ms)=420
+23/03/01 16:24:04 INFO mapred.JobClient:     Physical memory (bytes) snapshot=84627456
+23/03/01 16:24:04 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=401666048
+23/03/01 16:24:04 INFO mapred.JobClient:     Total committed heap usage (bytes)=40501248
+23/03/01 16:24:04 INFO mapreduce.ImportJobBase: Transferred 0 bytes in 8.8278 seconds (0 bytes/sec)
+23/03/01 16:24:04 INFO mapreduce.ImportJobBase: Retrieved 0 records.
+23/03/01 16:24:04 INFO tool.CodeGenTool: Beginning code generation
+23/03/01 16:24:04 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `db` AS t LIMIT 1
+23/03/01 16:24:04 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/dc4880fe3f1239f0e197d8a253c65e70/db.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/01 16:24:05 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/dc4880fe3f1239f0e197d8a253c65e70/db.jar
+23/03/01 16:24:05 WARN manager.CatalogQueryManager: The table db contains a multi-column primary key. Sqoop will default to the column Host only for this job.
+23/03/01 16:24:05 WARN manager.CatalogQueryManager: The table db contains a multi-column primary key. Sqoop will default to the column Host only for this job.
+23/03/01 16:24:05 INFO mapreduce.ImportJobBase: Beginning import of db
+23/03/01 16:24:05 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+23/03/01 16:24:06 INFO db.DataDrivenDBInputFormat: BoundingValsQuery: SELECT MIN(`Host`), MAX(`Host`) FROM `db`
+23/03/01 16:24:06 WARN db.TextSplitter: Generating splits for a textual index column.
+23/03/01 16:24:06 WARN db.TextSplitter: If your database sorts in a case-insensitive order, this may result in a partial import or duplicate records.
+23/03/01 16:24:06 WARN db.TextSplitter: You are strongly encouraged to choose an integral split column.
+23/03/01 16:24:06 INFO mapred.JobClient: Running job: job_202303010654_0021
+23/03/01 16:24:07 INFO mapred.JobClient:  map 0% reduce 0%
+23/03/01 16:24:12 INFO mapred.JobClient:  map 20% reduce 0%
+23/03/01 16:24:13 INFO mapred.JobClient:  map 40% reduce 0%
+23/03/01 16:24:16 INFO mapred.JobClient:  map 80% reduce 0%
+23/03/01 16:24:18 INFO mapred.JobClient:  map 100% reduce 0%
+23/03/01 16:24:19 INFO mapred.JobClient: Job complete: job_202303010654_0021
+23/03/01 16:24:19 INFO mapred.JobClient: Counters: 23
+23/03/01 16:24:19 INFO mapred.JobClient:   File System Counters
+23/03/01 16:24:19 INFO mapred.JobClient:     FILE: Number of bytes read=0
+23/03/01 16:24:19 INFO mapred.JobClient:     FILE: Number of bytes written=994280
+23/03/01 16:24:19 INFO mapred.JobClient:     FILE: Number of read operations=0
+23/03/01 16:24:19 INFO mapred.JobClient:     FILE: Number of large read operations=0
+23/03/01 16:24:19 INFO mapred.JobClient:     FILE: Number of write operations=0
+23/03/01 16:24:19 INFO mapred.JobClient:     HDFS: Number of bytes read=655
+23/03/01 16:24:19 INFO mapred.JobClient:     HDFS: Number of bytes written=340
+23/03/01 16:24:19 INFO mapred.JobClient:     HDFS: Number of read operations=5
+23/03/01 16:24:19 INFO mapred.JobClient:     HDFS: Number of large read operations=0
+23/03/01 16:24:19 INFO mapred.JobClient:     HDFS: Number of write operations=5
+23/03/01 16:24:19 INFO mapred.JobClient:   Job Counters 
+23/03/01 16:24:19 INFO mapred.JobClient:     Launched map tasks=5
+23/03/01 16:24:19 INFO mapred.JobClient:     Total time spent by all maps in occupied slots (ms)=17600
+23/03/01 16:24:19 INFO mapred.JobClient:     Total time spent by all reduces in occupied slots (ms)=0
+23/03/01 16:24:19 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+23/03/01 16:24:19 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+23/03/01 16:24:19 INFO mapred.JobClient:   Map-Reduce Framework
+23/03/01 16:24:19 INFO mapred.JobClient:     Map input records=6
+23/03/01 16:24:19 INFO mapred.JobClient:     Map output records=6
+23/03/01 16:24:19 INFO mapred.JobClient:     Input split bytes=655
+23/03/01 16:24:19 INFO mapred.JobClient:     Spilled Records=0
+23/03/01 16:24:19 INFO mapred.JobClient:     CPU time spent (ms)=2560
+23/03/01 16:24:19 INFO mapred.JobClient:     Physical memory (bytes) snapshot=433885184
+23/03/01 16:24:19 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=2015039488
+23/03/01 16:24:19 INFO mapred.JobClient:     Total committed heap usage (bytes)=284295168
+23/03/01 16:24:19 INFO mapreduce.ImportJobBase: Transferred 0 bytes in 14.1887 seconds (0 bytes/sec)
+23/03/01 16:24:19 INFO mapreduce.ImportJobBase: Retrieved 6 records.
+23/03/01 16:24:19 INFO tool.CodeGenTool: Beginning code generation
+23/03/01 16:24:19 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `event` AS t LIMIT 1
+23/03/01 16:24:19 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/dc4880fe3f1239f0e197d8a253c65e70/event.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/01 16:24:19 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/dc4880fe3f1239f0e197d8a253c65e70/event.jar
+23/03/01 16:24:19 WARN manager.CatalogQueryManager: The table event contains a multi-column primary key. Sqoop will default to the column db only for this job.
+23/03/01 16:24:19 WARN manager.CatalogQueryManager: The table event contains a multi-column primary key. Sqoop will default to the column db only for this job.
+23/03/01 16:24:19 INFO mapreduce.ImportJobBase: Beginning import of event
+23/03/01 16:24:19 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+23/03/01 16:24:20 INFO db.DataDrivenDBInputFormat: BoundingValsQuery: SELECT MIN(`db`), MAX(`db`) FROM `event`
+23/03/01 16:24:20 WARN db.TextSplitter: Generating splits for a textual index column.
+23/03/01 16:24:20 WARN db.TextSplitter: If your database sorts in a case-insensitive order, this may result in a partial import or duplicate records.
+23/03/01 16:24:20 WARN db.TextSplitter: You are strongly encouraged to choose an integral split column.
+23/03/01 16:24:21 INFO mapred.JobClient: Running job: job_202303010654_0022
+23/03/01 16:24:22 INFO mapred.JobClient:  map 0% reduce 0%
+23/03/01 16:24:27 INFO mapred.JobClient:  map 100% reduce 0%
+23/03/01 16:24:28 INFO mapred.JobClient: Job complete: job_202303010654_0022
+23/03/01 16:24:28 INFO mapred.JobClient: Counters: 23
+23/03/01 16:24:28 INFO mapred.JobClient:   File System Counters
+23/03/01 16:24:28 INFO mapred.JobClient:     FILE: Number of bytes read=0
+23/03/01 16:24:28 INFO mapred.JobClient:     FILE: Number of bytes written=198818
+23/03/01 16:24:28 INFO mapred.JobClient:     FILE: Number of read operations=0
+23/03/01 16:24:28 INFO mapred.JobClient:     FILE: Number of large read operations=0
+23/03/01 16:24:28 INFO mapred.JobClient:     FILE: Number of write operations=0
+23/03/01 16:24:28 INFO mapred.JobClient:     HDFS: Number of bytes read=105
+23/03/01 16:24:28 INFO mapred.JobClient:     HDFS: Number of bytes written=0
+23/03/01 16:24:28 INFO mapred.JobClient:     HDFS: Number of read operations=1
+23/03/01 16:24:28 INFO mapred.JobClient:     HDFS: Number of large read operations=0
+23/03/01 16:24:28 INFO mapred.JobClient:     HDFS: Number of write operations=1
+23/03/01 16:24:28 INFO mapred.JobClient:   Job Counters 
+23/03/01 16:24:28 INFO mapred.JobClient:     Launched map tasks=1
+23/03/01 16:24:28 INFO mapred.JobClient:     Total time spent by all maps in occupied slots (ms)=5408
+23/03/01 16:24:28 INFO mapred.JobClient:     Total time spent by all reduces in occupied slots (ms)=0
+23/03/01 16:24:28 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+23/03/01 16:24:28 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+23/03/01 16:24:28 INFO mapred.JobClient:   Map-Reduce Framework
+23/03/01 16:24:28 INFO mapred.JobClient:     Map input records=0
+23/03/01 16:24:28 INFO mapred.JobClient:     Map output records=0
+23/03/01 16:24:28 INFO mapred.JobClient:     Input split bytes=105
+23/03/01 16:24:28 INFO mapred.JobClient:     Spilled Records=0
+23/03/01 16:24:28 INFO mapred.JobClient:     CPU time spent (ms)=430
+23/03/01 16:24:28 INFO mapred.JobClient:     Physical memory (bytes) snapshot=86626304
+23/03/01 16:24:28 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=403767296
+23/03/01 16:24:28 INFO mapred.JobClient:     Total committed heap usage (bytes)=56754176
+23/03/01 16:24:28 INFO mapreduce.ImportJobBase: Transferred 0 bytes in 8.2158 seconds (0 bytes/sec)
+23/03/01 16:24:28 INFO mapreduce.ImportJobBase: Retrieved 0 records.
+23/03/01 16:24:28 INFO tool.CodeGenTool: Beginning code generation
+23/03/01 16:24:28 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `func` AS t LIMIT 1
+23/03/01 16:24:28 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/dc4880fe3f1239f0e197d8a253c65e70/func.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/01 16:24:28 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/dc4880fe3f1239f0e197d8a253c65e70/func.jar
+23/03/01 16:24:28 INFO mapreduce.ImportJobBase: Beginning import of func
+23/03/01 16:24:28 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+23/03/01 16:24:28 INFO db.DataDrivenDBInputFormat: BoundingValsQuery: SELECT MIN(`name`), MAX(`name`) FROM `func`
+23/03/01 16:24:28 WARN db.TextSplitter: Generating splits for a textual index column.
+23/03/01 16:24:28 WARN db.TextSplitter: If your database sorts in a case-insensitive order, this may result in a partial import or duplicate records.
+23/03/01 16:24:28 WARN db.TextSplitter: You are strongly encouraged to choose an integral split column.
+23/03/01 16:24:29 INFO mapred.JobClient: Running job: job_202303010654_0023
+23/03/01 16:24:30 INFO mapred.JobClient:  map 0% reduce 0%
+23/03/01 16:24:35 INFO mapred.JobClient:  map 100% reduce 0%
+23/03/01 16:24:36 INFO mapred.JobClient: Job complete: job_202303010654_0023
+23/03/01 16:24:36 INFO mapred.JobClient: Counters: 23
+23/03/01 16:24:36 INFO mapred.JobClient:   File System Counters
+23/03/01 16:24:36 INFO mapred.JobClient:     FILE: Number of bytes read=0
+23/03/01 16:24:36 INFO mapred.JobClient:     FILE: Number of bytes written=198559
+23/03/01 16:24:36 INFO mapred.JobClient:     FILE: Number of read operations=0
+23/03/01 16:24:36 INFO mapred.JobClient:     FILE: Number of large read operations=0
+23/03/01 16:24:36 INFO mapred.JobClient:     FILE: Number of write operations=0
+23/03/01 16:24:36 INFO mapred.JobClient:     HDFS: Number of bytes read=109
+23/03/01 16:24:36 INFO mapred.JobClient:     HDFS: Number of bytes written=0
+23/03/01 16:24:36 INFO mapred.JobClient:     HDFS: Number of read operations=1
+23/03/01 16:24:36 INFO mapred.JobClient:     HDFS: Number of large read operations=0
+23/03/01 16:24:36 INFO mapred.JobClient:     HDFS: Number of write operations=1
+23/03/01 16:24:36 INFO mapred.JobClient:   Job Counters 
+23/03/01 16:24:36 INFO mapred.JobClient:     Launched map tasks=1
+23/03/01 16:24:36 INFO mapred.JobClient:     Total time spent by all maps in occupied slots (ms)=5241
+23/03/01 16:24:36 INFO mapred.JobClient:     Total time spent by all reduces in occupied slots (ms)=0
+23/03/01 16:24:36 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+23/03/01 16:24:36 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+23/03/01 16:24:36 INFO mapred.JobClient:   Map-Reduce Framework
+23/03/01 16:24:36 INFO mapred.JobClient:     Map input records=0
+23/03/01 16:24:36 INFO mapred.JobClient:     Map output records=0
+23/03/01 16:24:36 INFO mapred.JobClient:     Input split bytes=109
+23/03/01 16:24:36 INFO mapred.JobClient:     Spilled Records=0
+23/03/01 16:24:36 INFO mapred.JobClient:     CPU time spent (ms)=430
+23/03/01 16:24:36 INFO mapred.JobClient:     Physical memory (bytes) snapshot=85467136
+23/03/01 16:24:36 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=401661952
+23/03/01 16:24:36 INFO mapred.JobClient:     Total committed heap usage (bytes)=56819712
+23/03/01 16:24:36 INFO mapreduce.ImportJobBase: Transferred 0 bytes in 7.9271 seconds (0 bytes/sec)
+23/03/01 16:24:36 INFO mapreduce.ImportJobBase: Retrieved 0 records.
+23/03/01 16:24:36 INFO tool.CodeGenTool: Beginning code generation
+23/03/01 16:24:36 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `general_log` AS t LIMIT 1
+23/03/01 16:24:36 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/dc4880fe3f1239f0e197d8a253c65e70/general_log.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/01 16:24:36 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/dc4880fe3f1239f0e197d8a253c65e70/general_log.jar
+23/03/01 16:24:36 ERROR tool.ImportAllTablesTool: Error during import: No primary key could be found for table general_log. Please specify one with --split-by or perform a sequential import with '-m 1'.
+[training@localhost ~]$ hadoop fs -ls
+Found 20 items
+drwxr-xr-x   - training supergroup          0 2023-02-10 11:26 OddEven
+drwxr-xr-x   - training supergroup          0 2023-02-13 15:24 avgwordinput
+drwxr-xr-x   - training supergroup          0 2023-02-13 15:26 avgwordoutput
+drwxr-xr-x   - training supergroup          0 2023-02-14 01:51 cocurence
+drwxr-xr-x   - training supergroup          0 2023-02-14 01:55 cocurenceoutput
+drwxr-xr-x   - training supergroup          0 2023-03-01 16:24 columns_priv
+-rw-r--r--   1 training supergroup         42 2023-02-14 01:53 cooccurence
+drwxr-xr-x   - training supergroup          0 2023-03-01 16:24 db
+drwxr-xr-x   - training supergroup          0 2023-03-01 16:24 event
+drwxr-xr-x   - training supergroup          0 2023-02-13 10:05 findwordinput
+drwxr-xr-x   - training supergroup          0 2023-03-01 16:24 func
+drwxr-xr-x   - training supergroup          0 2023-03-01 09:10 hiveinput
+-rw-r--r--   1 training supergroup         73 2023-02-10 11:29 oddeveninput
+drwxr-xr-x   - training supergroup          0 2023-02-10 11:31 oddevenoutput
+drwxr-xr-x   - training supergroup          0 2023-02-10 11:48 oddevenoutput1
+drwxr-xr-x   - training supergroup          0 2023-02-12 16:01 partisioninput
+drwxr-xr-x   - training supergroup          0 2023-02-12 16:03 partisionoutput
+drwxr-xr-x   - training supergroup          0 2023-02-12 16:08 partisionoutputt
+drwxr-xr-x   - training supergroup          0 2023-02-09 19:46 wordcount
+drwxr-xr-x   - training supergroup          0 2023-02-09 19:50 wordoutput
+[training@localhost ~]$ hadoop fs -ls db
+Found 7 items
+-rw-r--r--   1 training supergroup          0 2023-03-01 16:24 db/_SUCCESS
+drwxr-xr-x   - training supergroup          0 2023-03-01 16:24 db/_logs
+-rw-r--r--   1 training supergroup        154 2023-03-01 16:24 db/part-m-00000
+-rw-r--r--   1 training supergroup          0 2023-03-01 16:24 db/part-m-00001
+-rw-r--r--   1 training supergroup          0 2023-03-01 16:24 db/part-m-00002
+-rw-r--r--   1 training supergroup          0 2023-03-01 16:24 db/part-m-00003
+-rw-r--r--   1 training supergroup        186 2023-03-01 16:24 db/part-m-00004
+[training@localhost ~]$ hadoop fs -ls func
+Found 3 items
+-rw-r--r--   1 training supergroup          0 2023-03-01 16:24 func/_SUCCESS
+drwxr-xr-x   - training supergroup          0 2023-03-01 16:24 func/_logs
+-rw-r--r--   1 training supergroup          0 2023-03-01 16:24 func/part-m-00000
+[training@localhost ~]$ 

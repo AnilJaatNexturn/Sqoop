@@ -1,0 +1,2 @@
+sqoop export --connect jdbc:mysql://localhost/db  --username training --password training --table exportt --export-dir movie/part-m-00000 
+

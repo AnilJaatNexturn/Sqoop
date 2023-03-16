@@ -1,0 +1,306 @@
+[training@localhost ~]$ sqoop list-databases --connect jdbc:mysql://localhost --username training --password training
+23/03/01 15:47:00 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/01 15:47:00 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+information_schema
+hue
+metastore
+movielens
+mysql
+test
+training
+[training@localhost ~]$ sqoop list-tables --connect jdbc:mysql://localhost/movielens --username training --password training23/03/01 15:47:26 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/01 15:47:26 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+emp
+genre
+movie
+moviegenre
+movierating
+occupation
+user
+[training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/movielens --table user --fields-terminated-by '\t' --username training --password training 
+23/03/01 15:48:33 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/01 15:48:33 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+23/03/01 15:48:33 INFO tool.CodeGenTool: Beginning code generation
+23/03/01 15:48:33 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `user` AS t LIMIT 1
+23/03/01 15:48:33 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `user` AS t LIMIT 1
+23/03/01 15:48:33 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/d6f73bf68d8eca130200b0ae6a28a79b/user.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/01 15:48:34 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/d6f73bf68d8eca130200b0ae6a28a79b/user.jar
+23/03/01 15:48:34 WARN manager.MySQLManager: It looks like you are importing from mysql.
+23/03/01 15:48:34 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+23/03/01 15:48:34 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+23/03/01 15:48:34 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+23/03/01 15:48:34 INFO mapreduce.ImportJobBase: Beginning import of user
+23/03/01 15:48:35 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+23/03/01 15:48:36 INFO mapred.JobClient: Cleaning up the staging area hdfs://0.0.0.0:8020/var/lib/hadoop-hdfs/cache/mapred/mapred/staging/training/.staging/job_202303010654_0011
+23/03/01 15:48:36 ERROR security.UserGroupInformation: PriviledgedActionException as:training (auth:SIMPLE) cause:org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory user already exists
+23/03/01 15:48:36 ERROR tool.ImportTool: Encountered IOException running import job: org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory user already exists
+	at org.apache.hadoop.mapreduce.lib.output.FileOutputFormat.checkOutputSpecs(FileOutputFormat.java:132)
+	at org.apache.hadoop.mapred.JobClient$2.run(JobClient.java:935)
+	at org.apache.hadoop.mapred.JobClient$2.run(JobClient.java:896)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1332)
+	at org.apache.hadoop.mapred.JobClient.submitJobInternal(JobClient.java:896)
+	at org.apache.hadoop.mapreduce.Job.submit(Job.java:531)
+	at org.apache.hadoop.mapreduce.Job.waitForCompletion(Job.java:561)
+	at org.apache.sqoop.mapreduce.ImportJobBase.runJob(ImportJobBase.java:141)
+	at org.apache.sqoop.mapreduce.ImportJobBase.runImport(ImportJobBase.java:202)
+	at org.apache.sqoop.manager.SqlManager.importTable(SqlManager.java:465)
+	at org.apache.sqoop.manager.MySQLManager.importTable(MySQLManager.java:100)
+	at org.apache.sqoop.tool.ImportTool.importTable(ImportTool.java:403)
+	at org.apache.sqoop.tool.ImportTool.run(ImportTool.java:476)
+	at org.apache.sqoop.Sqoop.run(Sqoop.java:145)
+	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
+	at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:181)
+	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:220)
+	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:229)
+	at org.apache.sqoop.Sqoop.main(Sqoop.java:238)
+	at com.cloudera.sqoop.Sqoop.main(Sqoop.java:57)
+
+[training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/movielens --table occupation --fields-terminated-by '\t' --username training --password training
+23/03/01 15:49:48 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/01 15:49:48 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+23/03/01 15:49:48 INFO tool.CodeGenTool: Beginning code generation
+23/03/01 15:49:48 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `occupation` AS t LIMIT 1
+23/03/01 15:49:48 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `occupation` AS t LIMIT 1
+23/03/01 15:49:48 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/cdc9d4ac921aa70666ee97bff7127824/occupation.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/01 15:49:49 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/cdc9d4ac921aa70666ee97bff7127824/occupation.jar
+23/03/01 15:49:49 WARN manager.MySQLManager: It looks like you are importing from mysql.
+23/03/01 15:49:49 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+23/03/01 15:49:49 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+23/03/01 15:49:49 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+23/03/01 15:49:49 INFO mapreduce.ImportJobBase: Beginning import of occupation
+23/03/01 15:49:50 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+23/03/01 15:49:51 INFO db.DataDrivenDBInputFormat: BoundingValsQuery: SELECT MIN(`id`), MAX(`id`) FROM `occupation`
+23/03/01 15:49:51 INFO mapred.JobClient: Running job: job_202303010654_0012
+23/03/01 15:49:52 INFO mapred.JobClient:  map 0% reduce 0%
+23/03/01 15:49:57 INFO mapred.JobClient:  map 25% reduce 0%
+23/03/01 15:49:58 INFO mapred.JobClient:  map 50% reduce 0%
+23/03/01 15:50:00 INFO mapred.JobClient:  map 75% reduce 0%
+23/03/01 15:50:01 INFO mapred.JobClient:  map 100% reduce 0%
+23/03/01 15:50:01 INFO mapred.JobClient: Job complete: job_202303010654_0012
+23/03/01 15:50:01 INFO mapred.JobClient: Counters: 23
+23/03/01 15:50:01 INFO mapred.JobClient:   File System Counters
+23/03/01 15:50:01 INFO mapred.JobClient:     FILE: Number of bytes read=0
+23/03/01 15:50:01 INFO mapred.JobClient:     FILE: Number of bytes written=796620
+23/03/01 15:50:01 INFO mapred.JobClient:     FILE: Number of read operations=0
+23/03/01 15:50:01 INFO mapred.JobClient:     FILE: Number of large read operations=0
+23/03/01 15:50:01 INFO mapred.JobClient:     FILE: Number of write operations=0
+23/03/01 15:50:01 INFO mapred.JobClient:     HDFS: Number of bytes read=398
+23/03/01 15:50:01 INFO mapred.JobClient:     HDFS: Number of bytes written=348
+23/03/01 15:50:01 INFO mapred.JobClient:     HDFS: Number of read operations=4
+23/03/01 15:50:01 INFO mapred.JobClient:     HDFS: Number of large read operations=0
+23/03/01 15:50:01 INFO mapred.JobClient:     HDFS: Number of write operations=4
+23/03/01 15:50:01 INFO mapred.JobClient:   Job Counters 
+23/03/01 15:50:01 INFO mapred.JobClient:     Launched map tasks=4
+23/03/01 15:50:01 INFO mapred.JobClient:     Total time spent by all maps in occupied slots (ms)=14202
+23/03/01 15:50:01 INFO mapred.JobClient:     Total time spent by all reduces in occupied slots (ms)=0
+23/03/01 15:50:01 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+23/03/01 15:50:01 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+23/03/01 15:50:01 INFO mapred.JobClient:   Map-Reduce Framework
+23/03/01 15:50:01 INFO mapred.JobClient:     Map input records=21
+23/03/01 15:50:01 INFO mapred.JobClient:     Map output records=21
+23/03/01 15:50:01 INFO mapred.JobClient:     Input split bytes=398
+23/03/01 15:50:01 INFO mapred.JobClient:     Spilled Records=0
+23/03/01 15:50:01 INFO mapred.JobClient:     CPU time spent (ms)=2650
+23/03/01 15:50:01 INFO mapred.JobClient:     Physical memory (bytes) snapshot=358027264
+23/03/01 15:50:01 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=1625251840
+23/03/01 15:50:01 INFO mapred.JobClient:     Total committed heap usage (bytes)=211419136
+23/03/01 15:50:01 INFO mapreduce.ImportJobBase: Transferred 0 bytes in 11.8296 seconds (0 bytes/sec)
+23/03/01 15:50:01 INFO mapreduce.ImportJobBase: Retrieved 21 records.
+[training@localhost ~]$ hadoop fs -ls occupation
+Found 6 items
+-rw-r--r--   1 training supergroup          0 2023-03-01 15:50 occupation/_SUCCESS
+drwxr-xr-x   - training supergroup          0 2023-03-01 15:49 occupation/_logs
+-rw-r--r--   1 training supergroup         94 2023-03-01 15:49 occupation/part-m-00000
+-rw-r--r--   1 training supergroup         84 2023-03-01 15:49 occupation/part-m-00001
+-rw-r--r--   1 training supergroup         70 2023-03-01 15:49 occupation/part-m-00002
+-rw-r--r--   1 training supergroup        100 2023-03-01 15:49 occupation/part-m-00003
+[training@localhost ~]$ hadoop fs -tail occupation/part-m-00000
+0	other or not specified
+1	academic/educator
+2	artist
+3	clerical/admin
+4	college/grad student
+[training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/movielens --table movie --fields-terminated-by ',' --username training --password training
+23/03/01 15:54:10 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/01 15:54:10 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+23/03/01 15:54:10 INFO tool.CodeGenTool: Beginning code generation
+23/03/01 15:54:10 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `movie` AS t LIMIT 1
+23/03/01 15:54:10 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `movie` AS t LIMIT 1
+23/03/01 15:54:10 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/2f71ce30466a529fc1e1a12d5f0ac2ee/movie.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/01 15:54:11 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/2f71ce30466a529fc1e1a12d5f0ac2ee/movie.jar
+23/03/01 15:54:11 WARN manager.MySQLManager: It looks like you are importing from mysql.
+23/03/01 15:54:11 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+23/03/01 15:54:11 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+23/03/01 15:54:11 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+23/03/01 15:54:11 INFO mapreduce.ImportJobBase: Beginning import of movie
+23/03/01 15:54:11 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+23/03/01 15:54:13 INFO mapred.JobClient: Cleaning up the staging area hdfs://0.0.0.0:8020/var/lib/hadoop-hdfs/cache/mapred/mapred/staging/training/.staging/job_202303010654_0013
+23/03/01 15:54:13 ERROR security.UserGroupInformation: PriviledgedActionException as:training (auth:SIMPLE) cause:org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory movie already exists
+23/03/01 15:54:13 ERROR tool.ImportTool: Encountered IOException running import job: org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory movie already exists
+	at org.apache.hadoop.mapreduce.lib.output.FileOutputFormat.checkOutputSpecs(FileOutputFormat.java:132)
+	at org.apache.hadoop.mapred.JobClient$2.run(JobClient.java:935)
+	at org.apache.hadoop.mapred.JobClient$2.run(JobClient.java:896)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1332)
+	at org.apache.hadoop.mapred.JobClient.submitJobInternal(JobClient.java:896)
+	at org.apache.hadoop.mapreduce.Job.submit(Job.java:531)
+	at org.apache.hadoop.mapreduce.Job.waitForCompletion(Job.java:561)
+	at org.apache.sqoop.mapreduce.ImportJobBase.runJob(ImportJobBase.java:141)
+	at org.apache.sqoop.mapreduce.ImportJobBase.runImport(ImportJobBase.java:202)
+	at org.apache.sqoop.manager.SqlManager.importTable(SqlManager.java:465)
+	at org.apache.sqoop.manager.MySQLManager.importTable(MySQLManager.java:100)
+	at org.apache.sqoop.tool.ImportTool.importTable(ImportTool.java:403)
+	at org.apache.sqoop.tool.ImportTool.run(ImportTool.java:476)
+	at org.apache.sqoop.Sqoop.run(Sqoop.java:145)
+	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
+	at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:181)
+	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:220)
+	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:229)
+	at org.apache.sqoop.Sqoop.main(Sqoop.java:238)
+	at com.cloudera.sqoop.Sqoop.main(Sqoop.java:57)
+
+[training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/movielens --table movie --fields-terminated-by '\t' --username training --password training
+23/03/01 15:55:07 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/01 15:55:07 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+23/03/01 15:55:07 INFO tool.CodeGenTool: Beginning code generation
+23/03/01 15:55:07 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `movie` AS t LIMIT 1
+23/03/01 15:55:07 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `movie` AS t LIMIT 1
+23/03/01 15:55:07 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/5b944ba6c4cc75355848d23f71a466e6/movie.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/01 15:55:08 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/5b944ba6c4cc75355848d23f71a466e6/movie.jar
+23/03/01 15:55:08 WARN manager.MySQLManager: It looks like you are importing from mysql.
+23/03/01 15:55:08 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+23/03/01 15:55:08 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+23/03/01 15:55:08 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+23/03/01 15:55:08 INFO mapreduce.ImportJobBase: Beginning import of movie
+23/03/01 15:55:08 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+23/03/01 15:55:10 INFO mapred.JobClient: Cleaning up the staging area hdfs://0.0.0.0:8020/var/lib/hadoop-hdfs/cache/mapred/mapred/staging/training/.staging/job_202303010654_0014
+23/03/01 15:55:10 ERROR security.UserGroupInformation: PriviledgedActionException as:training (auth:SIMPLE) cause:org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory movie already exists
+23/03/01 15:55:10 ERROR tool.ImportTool: Encountered IOException running import job: org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory movie already exists
+	at org.apache.hadoop.mapreduce.lib.output.FileOutputFormat.checkOutputSpecs(FileOutputFormat.java:132)
+	at org.apache.hadoop.mapred.JobClient$2.run(JobClient.java:935)
+	at org.apache.hadoop.mapred.JobClient$2.run(JobClient.java:896)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1332)
+	at org.apache.hadoop.mapred.JobClient.submitJobInternal(JobClient.java:896)
+	at org.apache.hadoop.mapreduce.Job.submit(Job.java:531)
+	at org.apache.hadoop.mapreduce.Job.waitForCompletion(Job.java:561)
+	at org.apache.sqoop.mapreduce.ImportJobBase.runJob(ImportJobBase.java:141)
+	at org.apache.sqoop.mapreduce.ImportJobBase.runImport(ImportJobBase.java:202)
+	at org.apache.sqoop.manager.SqlManager.importTable(SqlManager.java:465)
+	at org.apache.sqoop.manager.MySQLManager.importTable(MySQLManager.java:100)
+	at org.apache.sqoop.tool.ImportTool.importTable(ImportTool.java:403)
+	at org.apache.sqoop.tool.ImportTool.run(ImportTool.java:476)
+	at org.apache.sqoop.Sqoop.run(Sqoop.java:145)
+	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
+	at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:181)
+	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:220)
+	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:229)
+	at org.apache.sqoop.Sqoop.main(Sqoop.java:238)
+	at com.cloudera.sqoop.Sqoop.main(Sqoop.java:57)
+
+[training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/movielens --table genre --fields-terminated-by ',' --username training --password training
+23/03/01 15:55:44 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/01 15:55:44 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+23/03/01 15:55:44 INFO tool.CodeGenTool: Beginning code generation
+23/03/01 15:55:44 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `genre` AS t LIMIT 1
+23/03/01 15:55:44 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `genre` AS t LIMIT 1
+23/03/01 15:55:44 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/c4ab3b4244444f7d86c901db995bb8af/genre.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/01 15:55:45 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/c4ab3b4244444f7d86c901db995bb8af/genre.jar
+23/03/01 15:55:45 WARN manager.MySQLManager: It looks like you are importing from mysql.
+23/03/01 15:55:45 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+23/03/01 15:55:45 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+23/03/01 15:55:45 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+23/03/01 15:55:45 INFO mapreduce.ImportJobBase: Beginning import of genre
+23/03/01 15:55:46 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+23/03/01 15:55:47 INFO db.DataDrivenDBInputFormat: BoundingValsQuery: SELECT MIN(`id`), MAX(`id`) FROM `genre`
+23/03/01 15:55:47 INFO mapred.JobClient: Running job: job_202303010654_0015
+23/03/01 15:55:48 INFO mapred.JobClient:  map 0% reduce 0%
+23/03/01 15:55:53 INFO mapred.JobClient:  map 50% reduce 0%
+23/03/01 15:55:56 INFO mapred.JobClient:  map 100% reduce 0%
+23/03/01 15:55:57 INFO mapred.JobClient: Job complete: job_202303010654_0015
+23/03/01 15:55:57 INFO mapred.JobClient: Counters: 23
+23/03/01 15:55:57 INFO mapred.JobClient:   File System Counters
+23/03/01 15:55:57 INFO mapred.JobClient:     FILE: Number of bytes read=0
+23/03/01 15:55:57 INFO mapred.JobClient:     FILE: Number of bytes written=796540
+23/03/01 15:55:57 INFO mapred.JobClient:     FILE: Number of read operations=0
+23/03/01 15:55:57 INFO mapred.JobClient:     FILE: Number of large read operations=0
+23/03/01 15:55:57 INFO mapred.JobClient:     FILE: Number of write operations=0
+23/03/01 15:55:57 INFO mapred.JobClient:     HDFS: Number of bytes read=398
+23/03/01 15:55:57 INFO mapred.JobClient:     HDFS: Number of bytes written=191
+23/03/01 15:55:57 INFO mapred.JobClient:     HDFS: Number of read operations=4
+23/03/01 15:55:57 INFO mapred.JobClient:     HDFS: Number of large read operations=0
+23/03/01 15:55:57 INFO mapred.JobClient:     HDFS: Number of write operations=4
+23/03/01 15:55:57 INFO mapred.JobClient:   Job Counters 
+23/03/01 15:55:57 INFO mapred.JobClient:     Launched map tasks=4
+23/03/01 15:55:57 INFO mapred.JobClient:     Total time spent by all maps in occupied slots (ms)=14065
+23/03/01 15:55:57 INFO mapred.JobClient:     Total time spent by all reduces in occupied slots (ms)=0
+23/03/01 15:55:57 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+23/03/01 15:55:57 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+23/03/01 15:55:57 INFO mapred.JobClient:   Map-Reduce Framework
+23/03/01 15:55:57 INFO mapred.JobClient:     Map input records=18
+23/03/01 15:55:57 INFO mapred.JobClient:     Map output records=18
+23/03/01 15:55:57 INFO mapred.JobClient:     Input split bytes=398
+23/03/01 15:55:57 INFO mapred.JobClient:     Spilled Records=0
+23/03/01 15:55:57 INFO mapred.JobClient:     CPU time spent (ms)=2130
+23/03/01 15:55:57 INFO mapred.JobClient:     Physical memory (bytes) snapshot=343883776
+23/03/01 15:55:57 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=1611235328
+23/03/01 15:55:57 INFO mapred.JobClient:     Total committed heap usage (bytes)=195231744
+23/03/01 15:55:57 INFO mapreduce.ImportJobBase: Transferred 0 bytes in 11.9274 seconds (0 bytes/sec)
+23/03/01 15:55:57 INFO mapreduce.ImportJobBase: Retrieved 18 records.
+[training@localhost ~]$ hadoop fs -ls
+Found 20 items
+drwxr-xr-x   - training supergroup          0 2023-02-10 11:26 OddEven
+drwxr-xr-x   - training supergroup          0 2023-02-13 15:24 avgwordinput
+drwxr-xr-x   - training supergroup          0 2023-02-13 15:26 avgwordoutput
+drwxr-xr-x   - training supergroup          0 2023-02-14 01:51 cocurence
+drwxr-xr-x   - training supergroup          0 2023-02-14 01:55 cocurenceoutput
+-rw-r--r--   1 training supergroup         42 2023-02-14 01:53 cooccurence
+drwxr-xr-x   - training supergroup          0 2023-02-13 10:05 findwordinput
+drwxr-xr-x   - training supergroup          0 2023-03-01 15:55 genre
+drwxr-xr-x   - training supergroup          0 2023-03-01 09:10 hiveinput
+drwxr-xr-x   - training supergroup          0 2023-02-16 14:27 movie
+drwxr-xr-x   - training supergroup          0 2023-03-01 15:50 occupation
+-rw-r--r--   1 training supergroup         73 2023-02-10 11:29 oddeveninput
+drwxr-xr-x   - training supergroup          0 2023-02-10 11:31 oddevenoutput
+drwxr-xr-x   - training supergroup          0 2023-02-10 11:48 oddevenoutput1
+drwxr-xr-x   - training supergroup          0 2023-02-12 16:01 partisioninput
+drwxr-xr-x   - training supergroup          0 2023-02-12 16:03 partisionoutput
+drwxr-xr-x   - training supergroup          0 2023-02-12 16:08 partisionoutputt
+drwxr-xr-x   - training supergroup          0 2023-03-01 15:44 user
+drwxr-xr-x   - training supergroup          0 2023-02-09 19:46 wordcount
+drwxr-xr-x   - training supergroup          0 2023-02-09 19:50 wordoutput
+[training@localhost ~]$ hadoop fs -rm genre
+rm: `genre': Is a directory
+[training@localhost ~]$ hadoop fs -rmdir  genre
+rmdir: `genre': Directory is not empty
+[training@localhost ~]$ hadoop fs -ls genre
+Found 6 items
+-rw-r--r--   1 training supergroup          0 2023-03-01 15:55 genre/_SUCCESS
+drwxr-xr-x   - training supergroup          0 2023-03-01 15:55 genre/_logs
+-rw-r--r--   1 training supergroup         55 2023-03-01 15:55 genre/part-m-00000
+-rw-r--r--   1 training supergroup         40 2023-03-01 15:55 genre/part-m-00001
+-rw-r--r--   1 training supergroup         45 2023-03-01 15:55 genre/part-m-00002
+-rw-r--r--   1 training supergroup         51 2023-03-01 15:55 genre/part-m-00003
+[training@localhost ~]$ hadoop fs -head  genre/part-m-00000
+-head: Unknown command
+[training@localhost ~]$ hadoop fs -tail  genre/part-m-00000
+1,Action
+2,Adventure
+3,Animation
+4,Children's
+5,Comedy
+[training@localhost ~]$ 
